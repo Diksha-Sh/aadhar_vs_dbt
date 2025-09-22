@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>DBT Status Checker - EduSeva</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="main.css" />
+		<link rel="stylesheet" href="india.css" />
+		<style>
+			#header {
+				background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+				padding: 1.5em 0 !important;
+				box-shadow: 0 4px 20px rgba(30,58,138,0.3);
+			}
+			#logo {
+				color: #ffffff !important;
+				font-size: 2.5em !important;
+				font-weight: 800 !important;
+				text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+				background: linear-gradient(90deg, #06b6d4, #7c3aed);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-left: -150px !important;
+			}
+			#nav a {
+				color: #e6eef8 !important;
+				font-weight: 600 !important;
+				transition: all 0.3s ease;
+			}
+			#nav a:hover {
+				color: #06b6d4 !important;
+				transform: translateY(-2px);
+			}
+			body {
+				background: linear-gradient(180deg, #0f172a, #1e293b 80%) !important;
+				color: #e6eef8 !important;
+			}
+			#content {
+				background: rgba(15,23,42,0.95);
+				border-radius: 15px;
+				margin: 20px;
+				padding: 30px;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+			}
+			#content h2, #content h3 {
+				color: #06b6d4 !important;
+			}
+			#footer {
+				background: rgba(15,23,42,0.95);
+				color: #e6eef8;
+			}
+			#footer h2 { color: #06b6d4; }
+			#footer a { color: #7c3aed; }
+			#footer a:hover { color: #06b6d4; }
+			
+			p, li, span, div, label {
+				color: #e6eef8 !important;
+			}
+
+			.checker-form {
+				background: rgba(59,130,246,0.1);
+				border-radius: 15px;
+				padding: 30px;
+				margin: 20px 0;
+				border: 2px solid rgba(6,182,212,0.3);
+			}
+			.form-group {
+				margin-bottom: 20px;
+			}
+			.form-group label {
+				display: block;
+				margin-bottom: 8px;
+				color: #e6eef8;
+				font-weight: 600;
+			}
+			.form-group input, .form-group select {
+				width: 100%;
+				padding: 12px 16px;
+				border: 2px solid rgba(59,130,246,0.3);
+				border-radius: 12px;
+				background: rgba(59,130,246,0.05);
+				color: #e6eef8;
+				font-size: 16px;
+			}
+			.form-group input:focus, .form-group select:focus {
+				border-color: #06b6d4;
+				outline: none;
+				box-shadow: 0 0 15px rgba(6,182,212,0.3);
+			}
+			.check-btn {
+				background: linear-gradient(90deg, #06b6d4, #7c3aed);
+				color: white;
+				border: none;
+				padding: 14px 30px;
+				border-radius: 25px;
+				font-size: 16px;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				width: 100%;
+				margin-top: 10px;
+			}
+			.check-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 25px rgba(6,182,212,0.4);
+			}
+			.result-box {
+				margin-top: 20px;
+				padding: 20px;
+				border-radius: 12px;
+				display: none;
+			}
+			.result-success {
+				background: rgba(16,185,129,0.2);
+				border: 2px solid #10b981;
+				color: #10b981;
+			}
+			.result-error {
+				background: rgba(239,68,68,0.2);
+				border: 2px solid #ef4444;
+				color: #ef4444;
+			}
+		</style>
+	</head>
+	<body class="subpage">
+		<div id="page-wrapper">
+			<section id="header">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h1><a href="homepage.html" id="logo">EduSeva</a></h1>
+							<nav id="nav">
+								<a href="homepage.html">Homepage</a>
+								<a href="threecolumn.html">About</a>
+								<a href="twocolumn1.html">Mapping</a>
+								<a href="twocolumn2.html">Registration for NGO Aid</a>
+								<a href="onecolumn.html">Customer Service</a>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<section>
+								<header>
+									<h2>DBT Status Checker</h2>
+									<h3>Verify if your bank account is DBT-enabled for scholarships</h3>
+								</header>
+								
+								<div class="checker-form">
+									<form id="dbtForm">
+										<div class="form-group">
+											<label for="aadhaar">Aadhaar Number</label>
+											<input type="text" id="aadhaar" placeholder="Enter 12-digit Aadhaar number" maxlength="12" required>
+										</div>
+										<div class="form-group">
+											<label for="bankName">Bank Name</label>
+											<select id="bankName" required>
+												<option value="">Select Your Bank</option>
+												<option value="SBI">State Bank of India</option>
+												<option value="HDFC">HDFC Bank</option>
+												<option value="ICICI">ICICI Bank</option>
+												<option value="PNB">Punjab National Bank</option>
+												<option value="BOI">Bank of India</option>
+												<option value="Canara">Canara Bank</option>
+												<option value="Union">Union Bank</option>
+												<option value="Axis">Axis Bank</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="accountNumber">Account Number</label>
+											<input type="text" id="accountNumber" placeholder="Enter your account number" required>
+										</div>
+										<button type="submit" class="check-btn">Check DBT Status</button>
+									</form>
+									
+									<div id="resultBox" class="result-box">
+										<h3 id="resultTitle"></h3>
+										<p id="resultMessage"></p>
+									</div>
+								</div>
+								
+								<div style="margin-top: 30px;">
+									<h3>What is DBT?</h3>
+									<p>Direct Benefit Transfer (DBT) is a government initiative to transfer subsidies and benefits directly to beneficiaries' bank accounts. For scholarships, your bank account must be DBT-enabled and linked with your Aadhaar.</p>
+									
+									<h3 style="margin-top: 20px;">Why Check DBT Status?</h3>
+									<ul style="margin-left: 20px; margin-top: 10px;">
+										<li>Ensure scholarship money reaches your account</li>
+										<li>Avoid delays in benefit transfers</li>
+										<li>Verify Aadhaar-bank linking status</li>
+										<li>Get alerts for any issues</li>
+									</ul>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<section>
+								<h2>Need Help?</h2>
+								<p>If you face any issues with DBT status or Aadhaar linking, visit our <a href="twocolumn1.html">Help Centers</a> or contact our support team.</p>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<div id="copyright">
+				&copy; EduSeva 2025. Empowering Students with DBT Awareness.
+			</div>
+		</div>
+
+		<script>
+			document.getElementById('dbtForm').addEventListener('submit', function(e) {
+				e.preventDefault();
+				
+				const aadhaar = document.getElementById('aadhaar').value;
+				const bankName = document.getElementById('bankName').value;
+				const accountNumber = document.getElementById('accountNumber').value;
+				const resultBox = document.getElementById('resultBox');
+				const resultTitle = document.getElementById('resultTitle');
+				const resultMessage = document.getElementById('resultMessage');
+				
+				// Validate Aadhaar
+				if (aadhaar.length !== 12 || !/^\d+$/.test(aadhaar)) {
+					showResult('error', 'Invalid Aadhaar', 'Please enter a valid 12-digit Aadhaar number.');
+					return;
+				}
+				
+				// Simulate API call
+				setTimeout(() => {
+					// Random result for demo
+					const isLinked = Math.random() > 0.3;
+					
+					if (isLinked) {
+						showResult('success', '✅ DBT Enabled', 
+							`Great! Your ${bankName} account ending with ${accountNumber.slice(-4)} is DBT-enabled and linked with Aadhaar. You can receive government scholarships and benefits.`);
+					} else {
+						showResult('error', '❌ DBT Not Linked', 
+							`Your ${bankName} account is not properly linked with Aadhaar for DBT. Please visit your bank branch or use net banking to complete the linking process.`);
+					}
+				}, 1500);
+				
+				// Show loading
+				showResult('success', 'Checking...', 'Please wait while we verify your DBT status.');
+			});
+			
+			function showResult(type, title, message) {
+				const resultBox = document.getElementById('resultBox');
+				const resultTitle = document.getElementById('resultTitle');
+				const resultMessage = document.getElementById('resultMessage');
+				
+				resultBox.className = `result-box result-${type}`;
+				resultBox.style.display = 'block';
+				resultTitle.textContent = title;
+				resultMessage.textContent = message;
+			}
+		</script>
+	</body>
+</html>

@@ -2032,60 +2032,134 @@ input, select, textarea {
 
 	}
 
-/* Theme overrides: lighter, more accessible palette */
+/* EduSeva Theme - Dark Mode with Proper Contrast */
 body {
-	color: #1f2937;
-	background-color: #f5f7fb;
+	color: #e6eef8 !important;
+	background: linear-gradient(180deg, #0f172a, #1e293b 80%) !important;
 }
 
+/* Text Elements - Ensure Visibility */
+p, li, span, div, label, strong, em {
+	color: #e6eef8 !important;
+}
+
+/* Links */
 a {
-	color: #2563eb;
-	text-decoration: underline;
+	color: #06b6d4 !important;
+	text-decoration: none;
 	transition: color 0.2s;
 }
 
 a:hover {
-	color: #1d4ed8;
+	color: #7c3aed !important;
 }
 
-/* Buttons */
-.button-large {
-	background-image: linear-gradient(to bottom, #2563eb, #1d4ed8);
-	background-color: #2563eb;
-	color: #fff;
-	text-shadow: none;
-	box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+/* Content Sections */
+#content {
+	background: rgba(15,23,42,0.95) !important;
+	border-radius: 15px;
+	margin: 20px;
+	padding: 30px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+	border: 2px solid rgba(6,182,212,0.3);
 }
 
-.button-large:hover {
-	background-image: linear-gradient(to bottom, #1d4ed8, #1e40af);
-	background-color: #1d4ed8;
-	color: #fff;
+#content section {
+	background: rgba(59,130,246,0.1) !important;
+	border-radius: 12px;
+	padding: 25px !important;
+	margin: 15px 0 !important;
+	border: 1px solid rgba(6,182,212,0.3);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Header nav links on dark header */
-#header nav a {
-	color: #e5e7eb;
-}
-
-#header nav a:hover {
-	color: #ffffff;
-}
-
-/* Content typography */
+/* Headers */
 #content h2 {
-	color: #111827;
+	color: #06b6d4 !important;
 }
 
 #content h3 {
-	color: #4b5563;
+	color: #e6eef8 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #06b6d4 !important;
+}
+
+/* Features Section */
+#features {
+	background: rgba(15,23,42,0.95) !important;
+	border-radius: 15px;
+	margin: 20px;
+	padding: 30px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+#features h2 {
+	color: #06b6d4 !important;
+}
+
+#features p, #features li {
+	color: #e6eef8 !important;
 }
 
 /* Footer */
 #footer {
-	color: #4b5563;
+	background: rgba(15,23,42,0.95) !important;
+	color: #e6eef8 !important;
 }
 
 #footer h2 {
-	color: #1f2937;
+	color: #06b6d4 !important;
+}
+
+#footer a {
+	color: #7c3aed !important;
+}
+
+#footer a:hover {
+	color: #06b6d4 !important;
+}
+
+/* Buttons */
+.button-large {
+	background: linear-gradient(90deg, #06b6d4, #7c3aed) !important;
+	color: white !important;
+	text-shadow: none;
+	box-shadow: 0 5px 15px rgba(6,182,212,0.3);
+	border-radius: 25px;
+	transition: all 0.3s ease;
+}
+
+.button-large:hover {
+	background: linear-gradient(90deg, #0891b2, #6d28d9) !important;
+	color: white !important;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(6,182,212,0.4);
+}
+
+/* Form Elements */
+input, select, textarea {
+	background: rgba(59,130,246,0.05) !important;
+	color: #e6eef8 !important;
+	border: 2px solid rgba(59,130,246,0.3) !important;
+	border-radius: 12px;
+}
+
+input::placeholder {
+	color: rgba(230,238,248,0.6) !important;
+}
+
+/* Lists */
+.link-list li, .check-list li, .quote-list li {
+	color: #e6eef8 !important;
+	border-color: rgba(6,182,212,0.3) !important;
+}
+
+/* Images */
+.bordered-feature-image {
+	background: rgba(59,130,246,0.1) !important;
+	border: 2px solid rgba(6,182,212,0.3) !important;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+	border-radius: 12px;
 }

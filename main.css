@@ -81,7 +81,7 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
-		background: #0d1333 url("images/bg03.jpg"); /* deep blue base */
+		background: #0d1333 url("bg03.jpg"); /* deep blue base */
 		color: #111; /* black text everywhere */
 		font-size: 13.5pt;
 		font-family: 'Yanone Kaffeesatz';
@@ -1429,7 +1429,7 @@ input, select, textarea {
 	.check-list li {
 		padding: 0.7em 0 0.7em 45px;
 		font-size: 1.2em;
-		background: url("images/icon-checkmark.png") 0px 1.05em no-repeat;
+		background: url("icon-checkmark.png") 0px 1.05em no-repeat;
 	}
 
 		.check-list li:first-child {
@@ -1456,7 +1456,7 @@ input, select, textarea {
 
 	.bordered-feature-image {
 		display: block;
-		background: #1a237e url("images/bg04.png"); /* dark blue */
+		background: #1a237e url("bg04.png"); /* dark blue */
 		border: 2px solid #3949ab; /* blue border */
 		padding: 10px;
 		box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
@@ -1516,7 +1516,7 @@ input, select, textarea {
 
 	#header {
 		position: relative;
-		background: #3B4346 url("images/bg01.jpg");
+		background: #3B4346 url("bg01.jpg");
 		border-bottom: solid 1px #272d30;
 		box-shadow: inset 0px -1px 0px 0px #51575a;
 		text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75);
@@ -1586,7 +1586,7 @@ input, select, textarea {
 /* Features */
 
 	#features {
-		background: #353D40 url("images/bg02.jpg");
+	background: #353D40 url("bg02.jpg");
 		border-bottom: solid 1px #272e31;
 		padding: 45px 0 45px 0;
 		text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75);
@@ -1610,7 +1610,7 @@ input, select, textarea {
 /* Content */
 
 	#content {
-		background: #f7f7f7 url("images/bg04.png");
+	background: #f7f7f7 url("bg04.png");
 		border-top: solid 1px #fff;
 		padding: 45px 0 45px 0;
 	}
@@ -1879,7 +1879,7 @@ input, select, textarea {
 						position: absolute;
 						width: 20px;
 						height: 30px;
-						background: url("images/mobileUI-site-nav-opener-bg.svg");
+						background: url("mobileUI-site-nav-opener-bg.svg");
 						top: 15px;
 						left: 20px;
 						z-index: 1;

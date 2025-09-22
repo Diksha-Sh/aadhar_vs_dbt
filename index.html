@@ -1,542 +1,496 @@
-<!DOCTYPE HTML>
-<!--
-    Halcyonic by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-    <head>
-        <title>Halcyonic by HTML5 UP</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="main.css" />
-		<link rel="stylesheet" href="india.css" />
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Portal — DBT Awareness</title>
+  <style>
+    :root{
+      --bg-1: #0f172a;
+      --accent-1: #06b6d4; /* cyan */
+      --accent-2: #7c3aed; /* violet */
+      --card: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.06);
+      --muted: rgba(255,255,255,0.7);
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 14px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
 
-        <style>
-            /* Language selector styles */
-            #language-selector {
-                position: fixed;
-                top: 12px;
-                right: 12px;
-                z-index: 9999;
-                font-family: Arial, sans-serif;
-            }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.15), transparent),
+                  radial-gradient(1000px 500px at 90% 90%, rgba(6,182,212,0.12), transparent),
+                  radial-gradient(800px 400px at 50% 50%, rgba(124,58,237,0.08), transparent),
+                  linear-gradient(180deg, var(--bg-1), #071029 80%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      padding-top:110px;
+      position:relative;
+    }
+    body::before{
+      content:'';
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.01)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.01)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.01)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+      pointer-events:none;
+      z-index:1;
+    }
 
-            #lang-button {
-                background: linear-gradient(90deg, #3f51b5, #5c6bc0);
-                color: #fff;
-                border: none;
-                padding: 10px 14px;
-                cursor: pointer;
-                font-size: 15px;
-                border-radius: 24px;
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                box-shadow: 0 4px 10px rgba(63,81,181,0.25);
-            }
-            #lang-button:hover { filter: brightness(0.95); }
-            #lang-button:focus { outline: 3px solid rgba(63,81,181,0.35); outline-offset: 2px; }
-            #lang-button .lang-icon { font-size: 16px; line-height: 1; }
+    .container{
+  width:100%;
+  max-width:1000px;
+  display:grid;
+  grid-template-columns: 380px 32px 1fr;
+  gap:0;
+  align-items:start;
+  position:relative;
+  margin-top:20px;
+    }
 
-            #lang-dropdown {
-                position: absolute;
-                top: 44px;
-                right: 0;
-                background: #fff;
-                border: 1px solid #e2e6ef;
-                border-radius: 10px;
-                width: 180px;
-                list-style: none;
-                padding: 6px;
-                margin: 0;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            }
+    /* left: login form */
+    .login-section{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border-radius: 16px;
+  padding:20px;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.5);
+  min-height:380px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+    }
+    .login-section::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+    }
 
-            #lang-dropdown li a {
-                display: block;
-                padding: 10px 12px;
-                color: #1f2937;
-                text-decoration: none;
-                border-radius: 8px;
-            }
+    .logo{
+      position:absolute;
+      top:20px;
+      left:20px;
+      display:flex;align-items:center;gap:16px;font-weight:700;letter-spacing:0.2px;
+      z-index:10;
+      background:rgba(15,23,42,0.8);
+      padding:12px 16px;
+      border-radius:16px;
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    }
+    
+    /* Header Bar Styles */
+    .header-bar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:70px;
+      background:linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      box-shadow:0 4px 20px rgba(30,58,138,0.3);
+      z-index:1000;
+      border-bottom:2px solid rgba(6,182,212,0.3);
+    }
+    
+    .govt-logo{
+      width:100%;
+      height:100%;
+      background:rgba(255,255,255,0.1);
+      padding:10px 20px;
+      backdrop-filter:blur(10px);
+      border:none;
+      box-shadow:inset 0 2px 10px rgba(0,0,0,0.1);
+      transition:all 0.3s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .govt-logo:hover{
+      background:rgba(255,255,255,0.15);
+      box-shadow:inset 0 2px 15px rgba(0,0,0,0.2);
+    }
+    .govt-logo img{
+      height:50px;
+      width:auto;
+      max-width:90%;
+      object-fit:contain;
+      filter:brightness(1.3) contrast(1.2);
+    }
+    .logo .mark{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 4px 16px rgba(6,182,212,0.3)}
+    .logo .mark svg{width:32px;height:32px}
 
-            #lang-dropdown li a:hover {
-                background-color: #f1f5fb;
-            }
+    .info-section h1{margin:0;font-size:28px;color:#e6eef8}
+    .info-section h2{margin:0;font-size:22px;color:#e6eef8;margin-top:20px}
+    .info-section p{margin:0;color:var(--muted);line-height:1.6;margin-bottom:15px}
+    .info-section ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.6}
+    .info-section li{margin-bottom:8px}
 
-            .hidden {
-                display: none;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Language Selector Dropdown -->
-        <div id="language-selector">
-          <button id="lang-button"><span class="lang-icon">🌐</span> Languages</button>
-          <ul id="lang-dropdown" class="hidden">
-            <li><a href="#">English</a></li>
-            <li><a href="#">हिन्दी</a></li>
-            <li><a href="#">தமிழ்</a></li>
-            <li><a href="#">বাংলা</a></li>
-            <li><a href="#">తెలుగు</a></li>
-            <li><a href="#">मराठी</a></li>
-            
-          </ul>
+    .features{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}
+    .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.1);transition:all 0.3s ease;cursor:default}
+    .chip:hover{background:rgba(255,255,255,0.08);transform:translateY(-1px)}
+
+    .scholarship-illustration{
+      margin-top:20px;display:flex;gap:12px;align-items:center;justify-content:center;opacity:0.95;position:relative;z-index:2
+    }
+    .dbt-info{
+      background:rgba(255,255,255,0.05);
+      padding:20px;
+      border-radius:12px;
+      border-left:4px solid var(--accent-1);
+      margin-top:20px;
+    }
+    .dbt-info h3{
+      margin:0 0 10px 0;
+      color:var(--accent-1);
+      font-size:18px;
+    }
+
+    /* separator */
+    .separator{
+  background: linear-gradient(180deg, transparent, #222 60%, transparent);
+  width:4px;
+  margin:0 0;
+  border-radius:2px;
+  box-shadow:0 0 12px #222;
+  height:100%;
+    }
+    
+    /* right: information section */
+    .info-section{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding:24px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      gap:16px;
+      min-height:380px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+    .info-section::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(135deg, rgba(6,182,212,0.05) 0%, transparent 50%, rgba(124,58,237,0.05) 100%);
+      pointer-events:none;
+    }
+
+    .form-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .form-head h2{margin:0;font-size:22px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .lang{font-size:13px;color:var(--muted)}
+
+    form{display:flex;flex-direction:column;gap:12px}
+    label{font-size:13px;color:var(--muted)}
+    .input{
+      display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.03);transition:all 0.3s ease;
+    }
+    .input:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08);}
+    .input input{background:transparent;border:0;outline:0;color:inherit;font-size:15px;width:100%}
+    .input svg{opacity:0.9}
+
+    .row{display:flex;gap:8px}
+    .row .col{flex:1}
+
+    .small{font-size:13px;color:var(--muted)}
+    .actions{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+
+    .btn{
+      appearance:none;border:0;padding:14px 20px;border-radius:12px;font-weight:600;cursor:pointer;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));box-shadow:0 8px 18px rgba(124,58,237,0.12);color:#06202a;transition:all 0.3s ease;position:relative;overflow:hidden;
+    }
+    .btn::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+      transition:left 0.5s;
+    }
+    .btn:hover::before{left:100%}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(124,58,237,0.2)}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .muted-link{color:var(--muted);text-decoration:none;font-size:13px;transition:color 0.3s ease}
+    .muted-link:hover{color:var(--accent-1)}
+
+    .foot{margin-top:6px;font-size:13px;color:var(--muted);text-align:center;position:relative;z-index:2}
+
+    /* responsive */
+    @media (max-width:920px){
+      .container{grid-template-columns:1fr;max-width:720px;gap:20px}
+      .separator{display:none}
+      .login-section{order:2}
+      .info-section{order:1}
+      .header-bar{height:65px}
+      .govt-logo{padding:8px 15px}
+      .govt-logo img{height:45px}
+      .info-section h1{font-size:24px}
+      .scholarship-illustration{justify-content:center}
+    }
+    @media (max-width:480px){
+      body{padding:18px;padding-top:100px}
+      .login-section{padding:18px}
+      .info-section{padding:20px}
+      .info-section h1{font-size:20px}
+      .info-section h2{font-size:18px}
+      .header-bar{height:60px}
+      .govt-logo{padding:6px 10px}
+      .govt-logo img{height:40px}
+      .scholarship-illustration svg{width:240px;height:120px}
+      .dbt-info{padding:15px}
+    }
+
+    /* subtle input focus */
+    .input:focus-within{box-shadow:0 6px 20px rgba(8,12,20,0.6);border-color:rgba(126,34,240,0.18)}
+    
+  </style>
+</head>
+<body>
+
+  <!-- Header Bar -->
+  <header class="header-bar">
+    <div class="govt-logo">
+      <img src="https://www.cdc-on.us/wp-content/uploads/2022/12/goverment_of_india.png" alt="Government of India Logo">
+    </div>
+    <div style="position:absolute;top:16px;right:32px;z-index:1001;display:flex;gap:12px;align-items:center;">
+      <div id="statusButton" style="padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.12);color:#1a237e;font-weight:600;font-size:0.9rem;box-shadow:0 2px 8px rgba(6,182,212,0.10);border:1px solid #06b6d4;cursor:pointer;transition:all 0.3s ease;">
+        Status: Pending
+      </div>
+      <select id="langDropdown" style="padding:8px 14px;border-radius:8px;border:1px solid #06b6d4;background:rgba(255,255,255,0.12);color:#1a237e;font-weight:600;font-size:1rem;box-shadow:0 2px 8px rgba(6,182,212,0.10);">
+        <option>EN</option>
+        <option>हिंदी</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container" role="main">
+
+    <!-- Left: Login Section -->
+    <section class="login-section" aria-labelledby="login-title">
+      <form id="loginForm" autocomplete="on" novalidate style="width:100%;max-width:340px;margin:0 auto;display:flex;flex-direction:column;gap:8px;background:rgba(255,255,255,0.07);border-radius:14px;padding:16px 14px;box-shadow:0 4px 18px rgba(6,182,212,0.10);">
+        <h2 id="login-title" style="text-align:center;font-size:1.4rem;background:linear-gradient(90deg,#06b6d4,#7c3aed);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;letter-spacing:0.3px;margin-bottom:10px;font-family:'Segoe UI',Arial,sans-serif;">Sign Up</h2>
+        
+        <div class="row" style="margin-bottom:8px;">
+          <div class="col">
+            <label for="uid" style="font-size:0.75rem;color:#06b6d4;font-weight:600;">Aadhaar/Student ID</label>
+            <div class="input" style="margin-top:3px;">
+              <input id="uid" name="uid" inputmode="numeric" pattern="\d*" placeholder="1234 5678 9012" aria-label="Aadhaar or Student ID" required style="font-size:0.8rem;padding:8px 10px;">
+            </div>
+          </div>
+          <div class="col">
+            <label for="bank" style="font-size:0.75rem;color:#7c3aed;font-weight:600;">Bank</label>
+            <div class="input" style="margin-top:3px;">
+              <select id="bank" name="bank" style="background:transparent;border:0;outline:0;color:inherit;font-size:0.8rem;width:100%;padding:8px 10px;">
+                <option value="">Choose bank</option>
+                <option>SBI</option>
+                <option>PNB</option>
+                <option>HDFC</option>
+                <option>ICICI</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
         </div>
-
-        <div id="page-wrapper">
-
-            <!-- Header -->
-                <section id="header">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-
-                                <!-- Logo -->
-                                    <h1><a href="index.html" id="logo">EduSeva</a></h1>
-
-                                <!-- Nav -->
-                                    <nav id="nav">
-                                        <a href="index.html">Homepage</a>
-                                        <a href="threecolumn.html">About</a>
-                                        <a href="twocolumn1.html"> Mapping</a>
-                                        <a href="twocolumn2.html">Application for NGO Aid</a>
-                                        <a href="onecolumn.html">Customer Service</a>
-                                    </nav>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div id="banner">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6 col-12-medium">
-
-                                    <!-- Banner Copy -->
-                                        <p>We aspire to ensure the future of no student falls victim to the system!!</p>
-                                        <a href="#" class="button-large">Go on, click me!</a>
-
-                                </div>
-                                <div class="col-6 col-12-medium imp-medium">
-
-                                    <!-- Banner Image -->
-                                        <a href="#" class="bordered-feature-image"><img src="banner.jpg" alt="" /></a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            <!-- Features -->
-                <section id="features">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3 col-6-medium col-12-small">
-
-                                <!-- Feature #1 -->
-                                    <section>
-                                        <a href="#" class="bordered-feature-image"><img src="pic01.jpg" alt="" /></a>
-                                        <h2>Welcome to Halcyonic</h2>
-                                        <p>
-                                            This is <strong>Halcyonic</strong>, a free site template
-                                            by <a href="http://twitter.com/ajlkn">AJ</a> for
-                                            <a href="http://html5up.net">HTML5 UP</a>. It's responsive,
-                                            built on HTML5 + CSS3, and includes 5 unique page layouts.
-                                        </p>
-                                    </section>
-
-                            </div>
-                            <div class="col-3 col-6-medium col-12-small">
-
-                                <!-- Feature #2 -->
-                                    <section>
-                                        <a href="#" class="bordered-feature-image"><img src="pic02.jpg" alt="" /></a>
-                                        <h2>Responsive You Say?</h2>
-                                        <p>
-                                            Yes! Halcyonic is built to be fully responsive so it looks great
-                                            at every screen size, from desktops to tablets to mobile phones.
-                                        </p>
-                                    </section>
-
-                            </div>
-                            <div class="col-3 col-6-medium col-12-small">
-
-                                <!-- Feature #3 -->
-                                    <section>
-                                        <a href="#" class="bordered-feature-image"><img src="pic03.jpg" alt="" /></a>
-                                        <h2>License Info</h2>
-                                        <p>
-                                            Halcyonic is licensed under the <a href="http://html5up.net/license">CCA</a> license,
-                                            so use it for personal/commercial use as much as you like (just keep
-                                            our credits intact).
-                                        </p>
-                                    </section>
-
-                            </div>
-                            <div class="col-3 col-6-medium col-12-small">
-
-                                <!-- Feature #4 -->
-                                    <section>
-                                        <a href="#" class="bordered-feature-image"><img src="pic04.jpg" alt="" /></a>
-                                        <h2>Volutpat etiam aliquam</h2>
-                                        <p>
-                                            Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse
-                                            eu varius nibh. Suspendisse vitae magna mollis.
-                                        </p>
-                                    </section>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            <!-- Content -->
-                <section id="content">
-                    <div class="container">
-                        <div class="row aln-center">
-                            <div class="col-4 col-12-medium">
-
-                                <!-- Box #1 -->
-                                    <section>
-                                        <header>
-                                            <h2>Who We Are</h2>
-                                            <h3>A subheading about who we are</h3>
-                                        </header>
-                                        <a href="#" class="feature-image"><img src="pic05.jpg" alt="" /></a>
-                                        <p>
-                                            Duis neque nisi, dapibus sed mattis quis, rutrum accumsan magna sed.
-                                            Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet mollis
-                                            justo facilisis quis. Sed sagittis amet lorem ipsum.
-                                        </p>
-                                    </section>
-
-                            </div>
-                            <div class="col-4 col-6-medium col-12-small">
-
-                                <!-- Box #2 -->
-                                    <section>
-                                        <header>
-                                            <h2>What We Do</h2>
-                                            <h3>A subheading about what we do</h3>
-                                        </header>
-                                        <ul class="check-list">
-                                            <li>Sed mattis quis rutrum accum</li>
-                                            <li>Eu varius nibh suspendisse lorem</li>
-                                            <li>Magna eget odio amet mollis justo</li>
-                                            <li>Facilisis quis sagittis mauris</li>
-                                            <li>Amet tellus gravida lorem ipsum</li>
-                                        </ul>
-                                    </section>
-
-                            </div>
-                            <div class="col-4 col-6-medium col-12-small">
-
-                                <!-- Box #3 -->
-                                    <section>
-                                        <header>
-                                            <h2>What People Are Saying</h2>
-                                            <h3>And a final subheading about our clients</h3>
-                                        </header>
-                                        <style>
-                                        .testimonial-slider {
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
-                                            gap: 0;
-                                        }
-                                        .testimonial-arrow-btn {
-                                            background: #3949ab; color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px;
-                                            font-size: 1.5em; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;
-                                            margin: 0 10px;
-                                        }
-                                        .testimonial-arrow-btn:hover { background: #222; }
-                                        .testimonial-slide-container {
-                                            display: flex;
-                                            flex-direction: column;
-                                            align-items: center;
-                                            justify-content: center;
-                                            min-width: 180px;
-                                            flex: 1 1 0;
-                                        }
-                                        .testimonial-slide { display: flex; flex-direction: column; align-items: center; }
-                                        .testimonial-slide img {
-                                            width: 120px;
-                                            height: 120px;
-                                            object-fit: cover;
-                                            border-radius: 12px;
-                                            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-                                            display: block;
-                                        }
-                                        .testimonial-caption { margin-top: 12px; font-size: 1.1em; text-align: center; min-height: 2.5em; color: #111; }
-                                        </style>
-                                        <div class="testimonial-slider">
-                                            <button class="testimonial-arrow-btn" onclick="showTestimonialSlide(-1)">&#8592;</button>
-                                            <div class="testimonial-slide-container">
-                                                <div class="testimonial-slide">
-                                                    <img src="pic06.jpg" alt="Photo 1" />
-                                                    <div class="testimonial-caption">Your sentence here.</div>
-                                                </div>
-                                                <div class="testimonial-slide" style="display:none;">
-                                                    <img src="pic07.jpg" alt="Photo 2" />
-                                                    <div class="testimonial-caption">Your sentence here.</div>
-                                                </div>
-                                                <div class="testimonial-slide" style="display:none;">
-                                                    <img src="pic08.jpg" alt="Photo 3" />
-                                                    <div class="testimonial-caption">Your sentence here.</div>
-                                                </div>
-                                                <div class="testimonial-slide" style="display:none;">
-                                                    <img src="pic01.jpg" alt="Photo 4" />
-                                                    <div class="testimonial-caption">Your sentence here.</div>
-                                                </div>
-                                                <div class="testimonial-slide" style="display:none;">
-                                                    <img src="pic02.jpg" alt="Photo 5" />
-                                                    <div class="testimonial-caption">Your sentence here.</div>
-                                                </div>
-                                            </div>
-                                            <button class="testimonial-arrow-btn" onclick="showTestimonialSlide(1)">&#8594;</button>
-                                        </div>
-                                    </section>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            <!-- Empty Section (Above Footer) -->
-                <section id="custom-section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Empty space for future content -->
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            <!-- Footer -->
-                <section id="footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-8 col-12-medium">
-
-                                <!-- Links -->
-                                    <section>
-                                        <h2>Links to Important Stuff</h2>
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-3 col-12-small">
-                                                    <ul class="link-list last-child">
-                                                        <li><a href="#">Neque amet dapibus</a></li>
-                                                        <li><a href="#">Sed mattis quis rutrum</a></li>
-                                                        <li><a href="#">Accumsan suspendisse</a></li>
-                                                        <li><a href="#">Eu varius vitae magna</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-3 col-12-small">
-                                                    <ul class="link-list last-child">
-                                                        <li><a href="#">Neque amet dapibus</a></li>
-                                                        <li><a href="#">Sed mattis quis rutrum</a></li>
-                                                        <li><a href="#">Accumsan suspendisse</a></li>
-                                                        <li><a href="#">Eu varius vitae magna</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-3 col-12-small">
-                                                    <ul class="link-list last-child">
-                                                        <li><a href="#">Neque amet dapibus</a></li>
-                                                        <li><a href="#">Sed mattis quis rutrum</a></li>
-                                                        <li><a href="#">Accumsan suspendisse</a></li>
-                                                        <li><a href="#">Eu varius vitae magna</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-3 col-12-small">
-                                                    <ul class="link-list last-child">
-                                                        <li><a href="#">Neque amet dapibus</a></li>
-                                                        <li><a href="#">Sed mattis quis rutrum</a></li>
-                                                        <li><a href="#">Accumsan suspendisse</a></li>
-                                                        <li><a href="#">Eu varius vitae magna</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-
-                            </div>
-                            <div class="col-4 col-12-medium imp-medium">
-
-                                <!-- Blurb -->
-                                    <section>
-                                        <h2>An Informative Text Blurb</h2>
-                                        <p>
-                                            Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
-                                            varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,
-                                            dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh
-                                            lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
-                                        </p>
-                                    </section>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            <!-- Copyright -->
-                <div id="copyright">
-                    &copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a>
-                </div>
-
+        
+        <div class="row" style="margin-bottom:8px;">
+          <div class="col">
+            <label for="mobile" style="font-size:0.75rem;color:#06b6d4;font-weight:600;">Mobile</label>
+            <div class="input" style="margin-top:3px;">
+              <input id="mobile" name="mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" placeholder="10-digit number" aria-label="Mobile Number" required style="font-size:0.8rem;padding:8px 10px;">
+            </div>
+            <div id="mobileWarning" style="display:none;color:#ef4444;font-size:0.7rem;margin-top:2px;">⚠ Valid 10-digit number</div>
+          </div>
+          <div class="col">
+            <label for="gender" style="font-size:0.75rem;color:#7c3aed;font-weight:600;">Gender</label>
+            <div class="input" style="margin-top:3px;">
+              <select id="gender" name="gender" style="background:transparent;border:0;outline:0;color:inherit;font-size:0.8rem;width:100%;padding:8px 10px;">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
         </div>
-
-
-        <!-- Scripts -->
-            <script src="jquery.min.js"></script>
-            <script src="browser.min.js"></script>
-            <script src="breakpoints.min.js"></script>
-            <script src="util.js"></script>
-            <script src="main.js"></script>
-
-            <script>
-            // Simple testimonial slider logic
-            let testimonialIndex = 0;
-            function showTestimonialSlide(n) {
-                const slides = document.querySelectorAll('.testimonial-slide');
-                testimonialIndex += n;
-                if (testimonialIndex >= slides.length) testimonialIndex = 0;
-                if (testimonialIndex < 0) testimonialIndex = slides.length - 1;
-                slides.forEach((slide, i) => {
-                    slide.style.display = (i === testimonialIndex) ? 'block' : 'none';
-                });
-            }
-            // Initialize on page load
-            document.addEventListener('DOMContentLoaded', function() {
-                showTestimonialSlide(0);
-            });
-            </script>
-            <script>
-                // Language dropdown toggle
-                document.getElementById('lang-button').addEventListener('click', function() {
-                  const dropdown = document.getElementById('lang-dropdown');
-                  dropdown.classList.toggle('hidden');
-                });
-
-                // Close dropdown if clicked outside
-                document.addEventListener('click', function(e) {
-                  const selector = document.getElementById('language-selector');
-                  if (!selector.contains(e.target)) {
-                    document.getElementById('lang-dropdown').classList.add('hidden');
-                  }
-                });
-            </script>
-        <!-- Floating Logo Placeholder -->
-        <style>
-        #floating-logo {
-            position: fixed;
-            top: 50%;
-            right: 16px;
-            transform: translateY(-50%);
-            z-index: 10000;
-            width: 54px;
-            height: 54px;
-            background: linear-gradient(180deg, #ffffff, #f3f6ff);
-            border: 2px solid #3f51b5;
-            border-radius: 50%;
-            box-shadow: 0 6px 16px rgba(63,81,181,0.18);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        #floating-logo svg { width: 26px; height: 26px; fill: #1d4ed8; }
-        #logo-tooltip {
-            display: none;
-            position: fixed;
-            top: 50%;
-            right: 86px;
-            transform: translateY(-50%);
-            min-width: 140px;
-            min-height: 36px;
-            background: #fff;
-            border: 1.5px solid #3f51b5;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            z-index: 10001;
-            padding: 7px 14px;
-            text-align: center;
-            font-size: 1em;
-            color: #222;
-            pointer-events: none;
-        }
-        #floating-logo:hover + #logo-tooltip {
-            display: block;
-        }
-        #logo-dialog {
-            display: none;
-            position: fixed;
-            top: 50%;
-            right: 86px;
-            transform: translateY(-50%);
-            width: 260px;
-            max-height: 300px;
-            background: #fff;
-            border: 2px solid #3f51b5;
-            border-radius: 12px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
-            z-index: 10002;
-            padding: 16px;
-            text-align: left;
-            font-size: 1em;
-            color: #222;
-        }
-        #logo-dialog.active {
-            display: block;
-        }
-        </style>
-        <div id="floating-logo" tabindex="0" aria-label="Events and Programmes">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15H5V9h14v10zM7 11h5v5H7z"/>
-            </svg>
+        
+        <div class="row" style="margin-bottom:8px;">
+          <div class="col">
+            <label for="age" style="font-size:0.75rem;color:#06b6d4;font-weight:600;">Age</label>
+            <div class="input" style="margin-top:3px;">
+              <input id="age" name="age" type="number" min="16" max="100" placeholder="Age" aria-label="Age" required style="font-size:0.8rem;padding:8px 10px;">
+            </div>
+          </div>
+          <div class="col">
+            <label for="profession" style="font-size:0.75rem;color:#7c3aed;font-weight:600;">Profession</label>
+            <div class="input" style="margin-top:3px;">
+              <select id="profession" name="profession" style="background:transparent;border:0;outline:0;color:inherit;font-size:0.8rem;width:100%;padding:8px 10px;">
+                <option value="">Select</option>
+                <option>Student</option>
+                <option>Teacher</option>
+                <option>Engineer</option>
+                <option>Doctor</option>
+                <option>Business</option>
+                <option>Government Employee</option>
+                <option>Village Resident</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div id="logo-tooltip">Events / Programmes</div>
-        <div id="logo-dialog" role="dialog" aria-labelledby="events-title" aria-modal="false">
-            <strong id="events-title" style="display:block; margin-bottom:8px; font-size:1.05em;">Upcoming Events</strong>
-            <ul style="list-style:none; margin:0; padding:0; max-height:220px; overflow:auto;">
-                <li style="padding:8px 6px; border-bottom:1px solid #e5e7eb;">
-                    <div style="font-weight:600; color:#111827;">Scholarship Awareness Drive</div>
-                    <div style="font-size:0.9em; color:#4b5563;">Oct 10, 2025 · 4:00 PM</div>
-                </li>
-                <li style="padding:8px 6px; border-bottom:1px solid #e5e7eb;">
-                    <div style="font-weight:600; color:#111827;">NGO Collaboration Meetup</div>
-                    <div style="font-size:0.9em; color:#4b5563;">Oct 15, 2025 · 11:00 AM</div>
-                </li>
-                <li style="padding:8px 6px; border-bottom:1px solid #e5e7eb;">
-                    <div style="font-weight:600; color:#111827;">Student Aid Camp</div>
-                    <div style="font-size:0.9em; color:#4b5563;">Oct 21, 2025 · 9:30 AM</div>
-                </li>
-                <li style="padding:8px 6px;">
-                    <div style="font-weight:600; color:#111827;">Workshop: Form Filling Help</div>
-                    <div style="font-size:0.9em; color:#4b5563;">Oct 28, 2025 · 2:00 PM</div>
-                </li>
-            </ul>
+        
+        <div style="margin-bottom:8px;">
+          <label for="pwd" style="font-size:0.75rem;color:#06b6d4;font-weight:600;">Password</label>
+          <div class="input" style="margin-top:3px;justify-content:space-between">
+            <input id="pwd" name="pwd" type="password" placeholder="Enter password" aria-label="Password" required style="font-size:0.8rem;padding:8px 10px;">
+            <button type="button" id="togglePwd" title="Show password" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.8rem">Show</button>
+          </div>
         </div>
-        <script>
-        // Floating logo click dialog logic
-        const floatingLogo = document.getElementById('floating-logo');
-        const logoDialog = document.getElementById('logo-dialog');
-        document.addEventListener('click', function(e) {
-            if (floatingLogo.contains(e.target)) {
-                logoDialog.classList.toggle('active');
-            } else if (!logoDialog.contains(e.target)) {
-                logoDialog.classList.remove('active');
-            }
-        });
-        // Keyboard access
-        floatingLogo.addEventListener('keydown', function(e){
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                logoDialog.classList.toggle('active');
-            }
-        });
-        </script>
-    </body>
+        
+        <div class="row" style="margin-top:4px;margin-bottom:8px;align-items:center;">
+          <div class="col">
+            <label class="small" style="font-size:0.7rem;color:#7c3aed;font-weight:600;"><input type="checkbox" id="remember"> Remember</label>
+          </div>
+          <div class="col" style="text-align:right"><a href="#" class="muted-link" style="font-size:0.7rem;color:#06b6d4;font-weight:600;">Help?</a></div>
+        </div>
+        
+        <button class="btn" type="submit" style="width:100%;margin-top:4px;font-size:0.9rem;font-weight:700;padding:10px;">Sign Up</button>
+        <div class="foot" style="margin-top:8px;font-size:0.7rem;color:var(--muted);text-align:center;">By signing up you accept our <a href="#" class="muted-link" style="color:#06b6d4;">Terms</a> & <a href="#" class="muted-link" style="color:#7c3aed;">Privacy</a>.</div>
+      </form>
+    </section>
+
+    <!-- Separator -->
+  <div class="separator" style="margin:0 24px 0 24px;"></div>
+
+    <!-- Right: Information Section -->
+    <section class="info-section" aria-labelledby="info-title" style="align-items:flex-start;">
+      <div style="width:100%;margin-bottom:20px;display:flex;justify-content:flex-start;">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Indian village scene with students" style="width:100%;height:220px;object-fit:cover;max-width:500px;display:block;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.18);">
+      </div>
+  <h1 id="info-title" style="margin-top:0;text-align:left;font-size:1.8rem;letter-spacing:0.3px;">Aadhaar & DBT: Smiles for Students</h1>
+      <p style="text-align:left;max-width:500px;margin:0 0 16px 0;color:#e6eef8;font-size:1.1rem;font-weight:600;">Scholarships reach students quickly, securely, and directly to accounts.</p>
+      <div class="dbt-info" style="margin-top:8px;">
+        <h3 style="font-size:1rem;">DBT vs Aadhaar: Understanding the Connection</h3>
+        <p style="font-size:0.9rem;">DBT sends funds straight to your bank. Aadhaar links you to benefits.</p>
+      </div>
+      <div class="features" aria-hidden="true" style="justify-content:left;">
+        <div class="chip">DBT Enabled</div>
+        <div class="chip">Aadhaar Linked</div>
+        <div class="chip">Fast Transfer</div>
+        <div class="chip">Secure</div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const toggle = document.getElementById('togglePwd');
+    const pwd = document.getElementById('pwd');
+    toggle.addEventListener('click', ()=>{
+      if(pwd.type === 'password'){ pwd.type='text'; toggle.textContent='Hide' } else { pwd.type='password'; toggle.textContent='Show' }
+    });
+
+    // Mobile number validation
+    const mobileInput = document.getElementById('mobile');
+    const mobileWarning = document.getElementById('mobileWarning');
+    const statusButton = document.getElementById('statusButton');
+
+    mobileInput.addEventListener('input', ()=>{
+      const mobileValue = mobileInput.value.replace(/\D/g, ''); // Remove non-digits
+      mobileInput.value = mobileValue;
+      
+      if(mobileValue.length === 6){
+        mobileWarning.style.display = 'block';
+        mobileWarning.textContent = '⚠ Please enter a valid 10-digit mobile number';
+      } else if(mobileValue.length === 10){
+        mobileWarning.style.display = 'none';
+      } else if(mobileValue.length > 0 && mobileValue.length !== 10){
+        mobileWarning.style.display = 'block';
+        mobileWarning.textContent = '⚠ Please enter a valid 10-digit mobile number';
+      } else {
+        mobileWarning.style.display = 'none';
+      }
+    });
+
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const uid = document.getElementById('uid').value.trim();
+      const bank = document.getElementById('bank').value;
+      const mobile = document.getElementById('mobile').value.trim();
+      const gender = document.getElementById('gender').value;
+      const age = document.getElementById('age').value;
+      const profession = document.getElementById('profession').value;
+      const password = document.getElementById('pwd').value;
+      
+      const error = [];
+      if(!uid) error.push('Enter Aadhaar or Student ID');
+      if(!bank) error.push('Select a bank');
+      if(!mobile || mobile.length !== 10) error.push('Enter valid 10-digit mobile number');
+      if(!gender) error.push('Select gender');
+      if(!age || age < 16 || age > 100) error.push('Enter valid age (16-100)');
+      if(!profession) error.push('Select profession');
+      if(!password) error.push('Enter password');
+      
+      if(error.length){ 
+        alert(error.join('\\n')); 
+        return;
+      }
+
+      // Update status button
+      statusButton.textContent = 'Status: Processing...';
+      statusButton.style.background = 'rgba(255,193,7,0.2)';
+      statusButton.style.borderColor = '#ffc107';
+      statusButton.style.color = '#ffc107';
+
+      // Simulate processing delay
+      setTimeout(() => {
+        const seeded = Math.random() > 0.35; 
+        if(seeded){
+          statusButton.textContent = 'Status: Accepted ✓';
+          statusButton.style.background = 'rgba(16,185,129,0.2)';
+          statusButton.style.borderColor = '#10b981';
+          statusButton.style.color = '#10b981';
+          alert('DBT status: ✔ This account appears linked to Aadhaar (prototype).\\nYou will be taken to your dashboard.');
+          setTimeout(() => {
+            window.location.href = 'homepage.html';
+          }, 1000);
+        } else {
+          statusButton.textContent = 'Status: Pending';
+          statusButton.style.background = 'rgba(255,255,255,0.12)';
+          statusButton.style.borderColor = '#06b6d4';
+          statusButton.style.color = '#1a237e';
+          alert('DBT status: ❌ Not linked.\\nFollow our step-by-step guide to link Aadhaar with your bank account.');
+        }
+      }, 2000);
+    });
+  </script>
+</body>
 </html>

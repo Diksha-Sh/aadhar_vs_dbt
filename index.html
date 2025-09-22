@@ -433,35 +433,31 @@
         #floating-logo {
             position: fixed;
             top: 50%;
-            right: 0;
+            right: 16px;
             transform: translateY(-50%);
             z-index: 10000;
-            width: 48px;
-            height: 48px;
-            background: #fff;
-            border: 2px solid #3949ab;
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(180deg, #ffffff, #f3f6ff);
+            border: 2px solid #3f51b5;
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 16px rgba(63,81,181,0.18);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
-        #floating-logo img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-        }
+        #floating-logo svg { width: 26px; height: 26px; fill: #1d4ed8; }
         #logo-tooltip {
             display: none;
             position: fixed;
             top: 50%;
-            right: 60px;
+            right: 86px;
             transform: translateY(-50%);
-            min-width: 90px;
+            min-width: 140px;
             min-height: 36px;
             background: #fff;
-            border: 1.5px solid #3949ab;
+            border: 1.5px solid #3f51b5;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.12);
             z-index: 10001;
@@ -478,32 +474,50 @@
             display: none;
             position: fixed;
             top: 50%;
-            right: 60px;
+            right: 86px;
             transform: translateY(-50%);
-            width: 180px;
-            height: 180px;
+            width: 260px;
+            max-height: 300px;
             background: #fff;
-            border: 2px solid #3949ab;
+            border: 2px solid #3f51b5;
             border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
             z-index: 10002;
-            padding: 18px;
-            text-align: center;
-            font-size: 1.1em;
+            padding: 16px;
+            text-align: left;
+            font-size: 1em;
             color: #222;
         }
         #logo-dialog.active {
             display: block;
         }
         </style>
-        <div id="floating-logo" tabindex="0">
-            <img src="icon-checkmark.png" alt="Logo" />
+        <div id="floating-logo" tabindex="0" aria-label="Events and Programmes">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15H5V9h14v10zM7 11h5v5H7z"/>
+            </svg>
         </div>
-        <div id="logo-tooltip">Event Calender</div>
-        <div id="logo-dialog">
-            <strong>Event Calender</strong><br><br>
-            Here you can add or view events.<br>
-            (This is a click dialog.)
+        <div id="logo-tooltip">Events / Programmes</div>
+        <div id="logo-dialog" role="dialog" aria-labelledby="events-title" aria-modal="false">
+            <strong id="events-title" style="display:block; margin-bottom:8px; font-size:1.05em;">Upcoming Events</strong>
+            <ul style="list-style:none; margin:0; padding:0; max-height:220px; overflow:auto;">
+                <li style="padding:8px 6px; border-bottom:1px solid #e5e7eb;">
+                    <div style="font-weight:600; color:#111827;">Scholarship Awareness Drive</div>
+                    <div style="font-size:0.9em; color:#4b5563;">Oct 10, 2025 · 4:00 PM</div>
+                </li>
+                <li style="padding:8px 6px; border-bottom:1px solid #e5e7eb;">
+                    <div style="font-weight:600; color:#111827;">NGO Collaboration Meetup</div>
+                    <div style="font-size:0.9em; color:#4b5563;">Oct 15, 2025 · 11:00 AM</div>
+                </li>
+                <li style="padding:8px 6px; border-bottom:1px solid #e5e7eb;">
+                    <div style="font-weight:600; color:#111827;">Student Aid Camp</div>
+                    <div style="font-size:0.9em; color:#4b5563;">Oct 21, 2025 · 9:30 AM</div>
+                </li>
+                <li style="padding:8px 6px;">
+                    <div style="font-weight:600; color:#111827;">Workshop: Form Filling Help</div>
+                    <div style="font-size:0.9em; color:#4b5563;">Oct 28, 2025 · 2:00 PM</div>
+                </li>
+            </ul>
         </div>
         <script>
         // Floating logo click dialog logic
@@ -514,6 +528,13 @@
                 logoDialog.classList.toggle('active');
             } else if (!logoDialog.contains(e.target)) {
                 logoDialog.classList.remove('active');
+            }
+        });
+        // Keyboard access
+        floatingLogo.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                logoDialog.classList.toggle('active');
             }
         });
         </script>

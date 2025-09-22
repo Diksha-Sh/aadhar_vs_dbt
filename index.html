@@ -16,45 +16,53 @@
             /* Language selector styles */
             #language-selector {
                 position: fixed;
-                top: 10px;
-                right: 10px;
+                top: 12px;
+                right: 12px;
                 z-index: 9999;
                 font-family: Arial, sans-serif;
             }
 
             #lang-button {
-                background: #444;
-                color: white;
+                background: linear-gradient(90deg, #3f51b5, #5c6bc0);
+                color: #fff;
                 border: none;
-                padding: 8px 12px;
+                padding: 10px 14px;
                 cursor: pointer;
-                font-size: 14px;
-                border-radius: 4px;
+                font-size: 15px;
+                border-radius: 24px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                box-shadow: 0 4px 10px rgba(63,81,181,0.25);
             }
+            #lang-button:hover { filter: brightness(0.95); }
+            #lang-button:focus { outline: 3px solid rgba(63,81,181,0.35); outline-offset: 2px; }
+            #lang-button .lang-icon { font-size: 16px; line-height: 1; }
 
             #lang-dropdown {
                 position: absolute;
-                top: 36px;
+                top: 44px;
                 right: 0;
-                background: white;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                width: 140px;
+                background: #fff;
+                border: 1px solid #e2e6ef;
+                border-radius: 10px;
+                width: 180px;
                 list-style: none;
-                padding: 0;
+                padding: 6px;
                 margin: 0;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.12);
             }
 
             #lang-dropdown li a {
                 display: block;
-                padding: 8px 10px;
-                color: #1e1c1c;
+                padding: 10px 12px;
+                color: #1f2937;
                 text-decoration: none;
+                border-radius: 8px;
             }
 
             #lang-dropdown li a:hover {
-                background-color: #eee;
+                background-color: #f1f5fb;
             }
 
             .hidden {
@@ -65,13 +73,15 @@
     <body>
         <!-- Language Selector Dropdown -->
         <div id="language-selector">
-          <button id="lang-button">Languages ▼</button>
+          <button id="lang-button"><span class="lang-icon">🌐</span> Languages</button>
           <ul id="lang-dropdown" class="hidden">
             <li><a href="#">English</a></li>
-            <li><a href="#">Spanish</a></li>
-            <li><a href="#">French</a></li>
-            <li><a href="#">German</a></li>
-            <li><a href="#">Chinese</a></li>
+            <li><a href="#">हिन्दी</a></li>
+            <li><a href="#">தமிழ்</a></li>
+            <li><a href="#">বাংলা</a></li>
+            <li><a href="#">తెలుగు</a></li>
+            <li><a href="#">मराठी</a></li>
+            
           </ul>
         </div>
 

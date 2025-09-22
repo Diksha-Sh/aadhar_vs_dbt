@@ -2031,3 +2031,61 @@ input, select, textarea {
 			}
 
 	}
+
+/* Theme overrides: lighter, more accessible palette */
+body {
+	color: #1f2937;
+	background-color: #f5f7fb;
+}
+
+a {
+	color: #2563eb;
+	text-decoration: underline;
+	transition: color 0.2s;
+}
+
+a:hover {
+	color: #1d4ed8;
+}
+
+/* Buttons */
+.button-large {
+	background-image: linear-gradient(to bottom, #2563eb, #1d4ed8);
+	background-color: #2563eb;
+	color: #fff;
+	text-shadow: none;
+	box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.button-large:hover {
+	background-image: linear-gradient(to bottom, #1d4ed8, #1e40af);
+	background-color: #1d4ed8;
+	color: #fff;
+}
+
+/* Header nav links on dark header */
+#header nav a {
+	color: #e5e7eb;
+}
+
+#header nav a:hover {
+	color: #ffffff;
+}
+
+/* Content typography */
+#content h2 {
+	color: #111827;
+}
+
+#content h3 {
+	color: #4b5563;
+}
+
+/* Footer */
+#footer {
+	color: #4b5563;
+}
+
+#footer h2 {
+	color: #1f2937;
+}

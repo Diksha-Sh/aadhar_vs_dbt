@@ -11,6 +11,115 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="main.css" />
 		<link rel="stylesheet" href="india.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+		<style>
+			/* Header styling */
+			#header {
+				background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+				padding: 1.5em 0 !important;
+				box-shadow: 0 4px 20px rgba(30,58,138,0.3);
+			}
+			#logo {
+				color: #ffffff !important;
+				font-size: 2.5em !important;
+				font-weight: 800 !important;
+				text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+				background: linear-gradient(90deg, #06b6d4, #7c3aed);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-left: -150px !important;
+			}
+
+			#resultsList { 
+				max-height: 400px;
+				overflow-y: auto;
+				padding-right: 10px;
+			}
+			#resultsList::-webkit-scrollbar {
+				width: 8px;
+			}
+			#resultsList::-webkit-scrollbar-track {
+				background: rgba(59,130,246,0.1);
+				border-radius: 4px;
+			}
+			#resultsList::-webkit-scrollbar-thumb {
+				background: linear-gradient(90deg, #06b6d4, #7c3aed);
+				border-radius: 4px;
+			}
+			#resultsList::-webkit-scrollbar-thumb:hover {
+				background: linear-gradient(90deg, #0891b2, #6d28d9);
+			}
+			#nav a {
+				color: #e6eef8 !important;
+				font-weight: 600 !important;
+				transition: all 0.3s ease;
+			}
+			#nav a:hover {
+				color: #06b6d4 !important;
+				transform: translateY(-2px);
+			}
+			
+			/* Content styling */
+			body {
+				background: linear-gradient(180deg, #0f172a, #1e293b 80%) !important;
+				color: #e6eef8 !important;
+			}
+			#content {
+				background: rgba(15,23,42,0.95);
+				border-radius: 15px;
+				margin: 20px;
+				padding: 30px;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+			}
+			#content h2, #content h3 {
+				color: #06b6d4 !important;
+			}
+			
+			.category-tabs { margin-bottom: 20px; }
+			.tab-btn {
+				display: block;
+				width: 100%;
+				padding: 12px;
+				margin-bottom: 8px;
+				border: 2px solid #3b82f6;
+				background: rgba(59,130,246,0.1);
+				border-radius: 8px;
+				cursor: pointer;
+				transition: all 0.3s;
+				font-size: 14px;
+				color: #e6eef8;
+				font-weight: 600;
+			}
+			.tab-btn:hover { background: rgba(59,130,246,0.2); transform: translateY(-2px); }
+			.tab-btn.active { background: linear-gradient(90deg, #06b6d4, #7c3aed); color: white; border-color: #06b6d4; }
+			
+			.result-item {
+				border: 1px solid #3b82f6;
+				border-radius: 12px;
+				padding: 15px;
+				margin-bottom: 10px;
+				background: rgba(59,130,246,0.05);
+				cursor: pointer;
+				transition: all 0.3s;
+				backdrop-filter: blur(10px);
+			}
+			.result-item:hover { background: rgba(59,130,246,0.1); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59,130,246,0.2); }
+			.result-name { font-weight: bold; font-size: 16px; color: #06b6d4; margin-bottom: 5px; }
+			.result-address { color: #e6eef8; font-size: 14px; margin-bottom: 5px; }
+			.result-distance { color: #10b981; font-size: 12px; font-weight: bold; }
+			.loading { text-align: center; padding: 20px; color: #e6eef8; }
+			
+			/* Footer styling */
+			#footer {
+				background: rgba(15,23,42,0.95);
+				color: #e6eef8;
+			}
+			#footer h2 { color: #06b6d4; }
+			#footer a { color: #7c3aed; }
+			#footer a:hover { color: #06b6d4; }
+		</style>
 	</head>
 	<body class="subpage">
 		<div id="page-wrapper">
@@ -22,11 +131,11 @@
 							<div class="col-12">
 
 								<!-- Logo -->
-									<h1><a href="index.html" id="logo">EduSeva</a></h1>
+									<h1><a href="homepage.html" id="logo">EduSeva</a></h1>
 
 								<!-- Nav -->
 									<nav id="nav">
-										<a href="index.html">Homepage</a>
+										<a href="homepage.html">Homepage</a>
 										<a href="threecolumn.html">About</a>
 										<a href="twocolumn1.html">Mapping</a>
 										<a href="twocolumn2.html">Registration for NGO Aid</a>
@@ -47,88 +156,56 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>Two Column #1</h2>
-											<h3>A generic two column layout</h3>
+											<h2>Find Nearby Services</h2>
+											<h3>Locate government centers, banks, NGOs and scholarship offices near you</h3>
 										</header>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam metus, congue
-											vel suscipit ut, dignissim non risus. Vestibulum ante est, fringilla nec placerat
-											eu, vestibulum vitae diam. Integer eget egestas eros. Duis enim erat, mollis quis
-											lacinia eget, blandit nec ipsum. Donec vitae turpis ipsum. Aliquam mauris libero,
-											sagittis in eleifend at, mattis imperdiet velit. Donec urna risus, rutrum molestie
-											varius ac, lacinia sit amet augue. Nam ultrices elementum eros.
-										</p>
-										<p>
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend
-											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor.
-										</p>
-										<p>
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend
-											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor.
-										</p>
+										
+										<button id="getLocation" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-bottom: 15px; cursor: pointer;">
+											📍 Get My Location
+										</button>
+										<div id="locationStatus" style="margin-bottom: 15px; font-size: 14px; color: #666;"></div>
+										
+										<!-- Map Container -->
+										<div id="map" style="width: 100%; height: 350px; border: 2px solid #ddd; border-radius: 8px; margin: 20px 0;"></div>
+										
+										<!-- Results List -->
+										<div id="resultsList" style="margin-top: 20px;"></div>
 									</section>
 
 							</div>
 							<div class="col-3 col-12-medium">
 
-								<!-- Sidebar -->
+								<!-- Category Tabs -->
 									<section>
 										<header>
-											<h2>Magna Phasellus</h2>
+											<h2>Find Nearby</h2>
 										</header>
-										<ul class="link-list">
-											<li><a href="#">Sed dolore viverra</a></li>
-											<li><a href="#">Ligula non varius</a></li>
-											<li><a href="#">Nec sociis natoque</a></li>
-											<li><a href="#">Penatibus et magnis</a></li>
-											<li><a href="#">Dis parturient montes</a></li>
-											<li><a href="#">Nascetur ridiculus</a></li>
-										</ul>
+										<div class="category-tabs">
+											<button class="tab-btn active" data-category="bank" data-query="amenity=bank">
+												🏦 Banks
+											</button>
+											<button class="tab-btn" data-category="aadhaar" data-query="office=government">
+												🏛️ Aadhaar Centers
+											</button>
+											<button class="tab-btn" data-category="ngo" data-query="amenity=social_facility">
+												🤝 NGOs
+											</button>
+											<button class="tab-btn" data-category="scholarship" data-query="amenity=townhall">
+												💰 Scholarship Offices
+											</button>
+										</div>
 									</section>
+									
 									<section>
 										<header>
-											<h2>Ipsum Dolor</h2>
+											<h2>Instructions</h2>
 										</header>
-										<p>
-											Vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat.
+										<p style="font-size: 14px; line-height: 1.4;">
+											1. Click "Get My Location" to find your current position<br>
+											2. Select a category from the tabs above<br>
+											3. View nearby locations on the map<br>
+											4. Click markers for more details
 										</p>
-										<ul class="link-list">
-											<li><a href="#">Sed dolore viverra</a></li>
-											<li><a href="#">Ligula non varius</a></li>
-											<li><a href="#">Dis parturient montes</a></li>
-											<li><a href="#">Nascetur ridiculus</a></li>
-										</ul>
 									</section>
 
 							</div>
@@ -215,6 +292,165 @@
 			<script src="breakpoints.min.js"></script>
 			<script src="util.js"></script>
 			<script src="main.js"></script>
+			
+			<script>
+				// Initialize the map
+				var map = L.map('map').setView([20.5937, 78.9629], 5);
+				var userLocation = null;
+				var currentMarkers = [];
+				
+				// Add OpenStreetMap tiles
+				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					attribution: '© OpenStreetMap contributors'
+				}).addTo(map);
+				
+				// Get user location
+				document.getElementById('getLocation').addEventListener('click', function() {
+					if (navigator.geolocation) {
+						document.getElementById('locationStatus').innerHTML = 'Getting your location...';
+						navigator.geolocation.getCurrentPosition(function(position) {
+							userLocation = [position.coords.latitude, position.coords.longitude];
+							map.setView(userLocation, 15);
+							L.marker(userLocation).addTo(map).bindPopup('📍 Your Location').openPopup();
+							document.getElementById('locationStatus').innerHTML = '✓ Location found! Select a category to find nearby services.';
+						}, function() {
+							document.getElementById('locationStatus').innerHTML = '⚠ Could not get location. Using default view.';
+						});
+					} else {
+						document.getElementById('locationStatus').innerHTML = '⚠ Geolocation not supported.';
+					}
+				});
+				
+				// Calculate distance between two points in km
+				function calculateDistance(lat1, lng1, lat2, lng2) {
+					var R = 6371;
+					var dLat = (lat2 - lat1) * Math.PI / 180;
+					var dLng = (lng2 - lng1) * Math.PI / 180;
+					var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+							Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+							Math.sin(dLng/2) * Math.sin(dLng/2);
+					var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+					return R * c;
+				}
+				
+				// Clear existing markers and results
+				function clearResults() {
+					currentMarkers.forEach(marker => map.removeLayer(marker));
+					currentMarkers = [];
+					document.getElementById('resultsList').innerHTML = '';
+				}
+				
+				// Fetch nearby places using Overpass API
+				function fetchNearbyPlaces(category, query) {
+					if (!userLocation) {
+						alert('Please get your location first!');
+						return;
+					}
+					
+					clearResults();
+					document.getElementById('resultsList').innerHTML = '<div class="loading">Searching nearby ' + category + '...</div>';
+					
+					var radius = 20000; // 20km radius
+					var overpassQuery = `
+						[out:json][timeout:25];
+						(
+							node[${query}](around:${radius},${userLocation[0]},${userLocation[1]});
+							way[${query}](around:${radius},${userLocation[0]},${userLocation[1]});
+							relation[${query}](around:${radius},${userLocation[0]},${userLocation[1]});
+						);
+						out center;
+					`;
+					
+					fetch('https://overpass-api.de/api/interpreter', {
+						method: 'POST',
+						body: overpassQuery
+					})
+					.then(response => response.json())
+					.then(data => {
+						var places = [];
+						
+						data.elements.forEach(function(element) {
+							if (element.lat && element.lon) {
+								var distance = calculateDistance(userLocation[0], userLocation[1], element.lat, element.lon);
+								var name = element.tags.name || element.tags.brand || `${category.charAt(0).toUpperCase() + category.slice(1)}`;
+								var address = [element.tags['addr:street'], element.tags['addr:city']].filter(Boolean).join(', ') || 'Address not available';
+								
+								places.push({
+									lat: element.lat,
+									lon: element.lon,
+									name: name,
+									address: address,
+									distance: distance.toFixed(2),
+									phone: element.tags.phone || 'Not available',
+									website: element.tags.website || '',
+									openingHours: element.tags.opening_hours || 'Not available'
+								});
+							}
+						});
+						
+						// Sort by distance
+						places.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+						
+						// Display results
+						displayResults(places, category);
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						document.getElementById('resultsList').innerHTML = '<div class="loading">Error loading results. Please try again.</div>';
+					});
+				}
+				
+				// Display results on map and list
+				function displayResults(places, category) {
+					var resultsHtml = `<h3>Nearby ${category.charAt(0).toUpperCase() + category.slice(1)} (${places.length} found)</h3>`;
+					
+					if (places.length === 0) {
+						resultsHtml += '<div class="loading">No nearby locations found within 20km.</div>';
+					} else {
+						places.forEach(function(place, index) {
+							// Add marker to map
+							var marker = L.marker([place.lat, place.lon]).addTo(map);
+							marker.bindPopup(`
+								<b>${place.name}</b><br>
+								${place.address}<br>
+								<small>📍 ${place.distance} km away</small><br>
+								<small>📞 ${place.phone}</small>
+							`);
+							currentMarkers.push(marker);
+							
+							// Add to results list
+							resultsHtml += `
+								<div class="result-item" onclick="focusOnPlace(${place.lat}, ${place.lon}, ${index})">
+									<div class="result-name">${place.name}</div>
+									<div class="result-address">📍 ${place.address}</div>
+									<div class="result-distance">${place.distance} km away</div>
+									<div style="font-size: 12px; color: #666; margin-top: 5px;">
+										📞 ${place.phone}<br>
+										🕰️ ${place.openingHours}
+									</div>
+								</div>
+							`;
+						});
+					}
+					
+					document.getElementById('resultsList').innerHTML = resultsHtml;
+				}
+				
+				// Focus on a specific place
+				function focusOnPlace(lat, lon, index) {
+					map.setView([lat, lon], 17);
+					currentMarkers[index].openPopup();
+				}
+				
+				// Tab click handlers
+				document.querySelectorAll('.tab-btn').forEach(function(btn) {
+					btn.addEventListener('click', function() {
+						document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+						this.classList.add('active');
+						fetchNearbyPlaces(this.dataset.category, this.dataset.query);
+					});
+				});
+			</script>
 
 	</body>
 </html>
